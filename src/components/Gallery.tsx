@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Photo from "./Photo";
 import styled from "styled-components";
+import { People } from "../types/types";
 
 const GalleryContainer = styled.div`
   width: 80%;
@@ -9,16 +10,27 @@ const GalleryContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 1rem;
 `;
 
 const Gallery = () => {
   const [robots, setRobots] = useState<string[]>([]);
+  const [people, setPeople] = useState<People[]>([]);
+  const pageSize = 10;
+  useEffect(() => {
+    const getPeople = async () => {
+      const res = await fetch(`https://swapi.dev/api/people`);
+      const data = await res.json(); // Await the JSON parsing
+      setPeople(data.results);
+    };
 
+    getPeople();
+  }, []);
   useEffect(() => {
     const fetchRobots = async () => {
       const newRobots: string[] = [];
 
-      for (let i = 0; i < 21; i++) {
+      for (let i = 0; i < pageSize; i++) {
         const res = await fetch(`https://robohash.org/${i + 1}`);
         const data = res.url;
 
@@ -31,11 +43,20 @@ const Gallery = () => {
 
   console.log({ robots });
   return (
-    <GalleryContainer>
-      {robots.map((robot, index) => (
-        <Photo key={index} src={robot} />
-      ))}
-    </GalleryContainer>
+    <>
+      {robots.length && people.length && (
+        <GalleryContainer>
+          {robots.map((robot, index) => (
+            <Photo
+              key={index}
+              src={robot}
+              hash={String(index)}
+              people={people[index]}
+            />
+          ))}
+        </GalleryContainer>
+      )}
+    </>
   );
 };
 
