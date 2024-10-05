@@ -50,6 +50,22 @@ interface PhotoProps {
   people: People;
 }
 
+/**
+ * Photo component displays an image along with associated metadata.
+ *
+ * @component
+ * @param {Object} props - The properties object.
+ * @param {string} props.src - The source URL of the image.
+ * @param {string} props.hash - The hash value associated with the image.
+ * @param {Object} props.people - The object containing information about the person.
+ * @param {string} props.people.name - The name of the person.
+ * @param {string} props.people.mass - The mass of the person.
+ *
+ * @returns {JSX.Element} The rendered Photo component.
+ *
+ * @example
+ * <Photo src="image_url" hash="some_hash" people={{ name: "John Doe", mass: "80" }} />
+ */
 const Photo = ({ src, hash, people }: PhotoProps) => {
   return (
     <Frame

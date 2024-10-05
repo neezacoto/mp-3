@@ -13,6 +13,27 @@ const GalleryContainer = styled.div`
   gap: 1rem;
 `;
 
+/**
+ * Gallery component that fetches and displays a list of robots and people.
+ *
+ * This component fetches data from two different APIs:
+ * - The Star Wars API (https://swapi.dev/api/people) to get a list of people.
+ * - The RoboHash API (https://robohash.org) to get a list of robot images.
+ *
+ * The component maintains two pieces of state:
+ * - `robots`: An array of strings representing the URLs of robot images.
+ * - `people`: An array of `People` objects representing the people fetched from the Star Wars API.
+ *
+ * The component uses two `useEffect` hooks to fetch the data when the component mounts.
+ *
+ * The fetched data is then displayed in a `GalleryContainer` component, where each robot image is paired with a corresponding person.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Gallery />
+ * )
+ */
 const Gallery = () => {
   const [robots, setRobots] = useState<string[]>([]);
   const [people, setPeople] = useState<People[]>([]);
