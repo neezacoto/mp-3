@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { People } from "../types/types";
 
@@ -75,7 +74,12 @@ const Photo = ({ src, hash, people }: PhotoProps) => {
           : {}
       }
     >
-      <img src={src} height="100px" width="100px" />
+      <img
+        src={src}
+        height="100px"
+        width="100px"
+        alt={"generated robot " + hash}
+      />
       <Hash>
         <p>Hash: {hash}</p>
       </Hash>
