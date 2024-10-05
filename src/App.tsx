@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import Gallery from "./components/Gallery";
 import styled from "styled-components";
